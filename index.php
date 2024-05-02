@@ -25,36 +25,24 @@ $f3->route('GET /', function() {
 // Survey Form
 $f3->route('GET|POST /survey', function($f3) {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Extract data from POST
-        $username = $_POST['username'];
-        $statements = isset($_POST['statements']) ?
-            implode(", ", $_POST['statements']) : "None selected";
+        // Extract and store data from POST
+        $f3->set('SESSION.username', $_POST['username']);
+        $f3->set('SESSION.statements', implode(", ", isset($_POST['statements']) ? $_POST['statements'] : []));
 
-        // Store data
-        $f3->set('SESSION.username', $username);
-        $f3->set('SESSION.statements', $statements);
-
-        // Redirect to the summary page
+        // Reroute to summary page
         $f3->reroute('/summary');
-    } else {
-        // Display the survey form
-        $view = new Template();
-        echo $view->render('views/survey.html');
     }
+
+    // Render the survey page
+    $view = new Template();
+    echo $view->render('views/survey.html');
 });
 
-// Summary Page
+// Define a "summary" route
 $f3->route('GET /summary', function($f3) {
-    // Check if
-    if (!$f3->exists('SESSION.username') || !$f3->exists('SESSION.statements')) {
-        // Redirect to the home page if no session data found
-        $f3->reroute('/');
-    }
-
-    // Render the summary
+    // Render the summary page
     $view = new Template();
     echo $view->render('views/summary.html');
 });
 
-// Run Fat-Free
 $f3->run();

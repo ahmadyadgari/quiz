@@ -12,19 +12,25 @@
 <body>
 <div class="container mt-5">
     <h1>Midterm Survey</h1>
-    <form action="survey" method="post">
-        <div class="form-group">
+    <form action="#" method="post">
+        <div>
             <label for="username">Name:</label>
-            <input type="text" id="username" name="username" required placeholder="Your name"><br>
+            <input type="text" id="username" name="username" required placeholder="Your name">
         </div>
         <h2>Check all that apply:</h2>
-        <input type="checkbox" id="easy-midterm" name="statements[]" value="This midterm is easy">
-        <label for="easy-midterm">This midterm is easy</label><br>
-        <input type="checkbox" id="like-midterm" name="statements[]" value="I like midterm">
-        <label for="like-midterm">I like midterm</label><br>
-        <input type="checkbox" id="today-monday" name="statements[]" value="Today is Monday">
-        <label for="today-monday">Today is Monday</label><br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div>
+            <input type="checkbox" id="easy" name="statements[]" value="This midterm is easy">
+            <label for="easy">This midterm is easy</label>
+        </div>
+        <div>
+            <input type="checkbox" id="like" name="statements[]" value="I like midterms">
+            <label for="like">I like midterms</label>
+        </div>
+        <div>
+            <input type="checkbox" id="monday" name="statements[]" value="Today is Monday">
+            <label for="monday">Today is Monday</label>
+        </div>
+        <button type="submit">Submit</button>
     </form>
 </div>
 </body>

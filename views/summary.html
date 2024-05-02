@@ -11,20 +11,9 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1>Thank you for taking the survey, {{ @username }}!</h1>
+    <h1>Thank you for taking the survey, {{ @SESSION.username }}!</h1>
     <h2>Your Answers:</h2>
-    <ul>
-        <check if="{{ count(@statements) > 0 && @statements[0] != 'None selected' }}">
-            <true>
-                <repeat group="{{ @statements }}" value="{{ @statement }}">
-                    <li>{{ @statement }}</li>
-                </repeat>
-            </true>
-            <false>
-                <li>No statements selected.</li>
-            </false>
-        </check>
-    </ul>
+    <p>{{ @SESSION.statements }}</p><br>
     <a href="{{ @BASE }}">Return to Home page</a>
 </div>
 </body>
