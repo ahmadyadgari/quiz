@@ -11,14 +11,21 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1>Thank you for taking the survey, {{SESSION.}}</h1><br>
-    <div>
-        <p>Pet Type: {{ @SESSION.petData['petType'] }}</p>
-        <p>Breed Type: {{ @SESSION.petData['breedType'] }}</p>
-        <p>Pet Age: {{ @SESSION.petData['petAge'] }}</p>
-        <p>Pet Color: {{ @SESSION.petData['petColor'] }}</p>
-        <p>Pet Gender: {{ @SESSION.petData['petGender'] }}</p>
-    </div>
+    <h1>Thank you for taking the survey, </h1>
+    <p>Name: {{ @username }}</p>
+    <h2>Your Answers:</h2>
+    <ul>
+        <check if="{{ @statements | count }}">
+            <true>
+                <repeat group="{{ @statements }}" value="{{ @statement }}">
+                    <li>{{ @statement }}</li>
+                </repeat>
+            </true>
+            <false>
+                <li>No statements selected.</li>
+            </false>
+        </check>
+    </ul>
     <a href="{{ @BASE }}">Return to Home page</a>
 </div>
 </body>

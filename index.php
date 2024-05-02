@@ -16,28 +16,51 @@ $f3 = Base::instance();
 // Define a default route
 // https://ayadgari.greenriverdev.com/328/Week5/quiz/
 
+// Define a default route
 $f3->route('GET /', function() {
-    // Render a view page
     $view = new Template();
     echo $view->render('views/home-page.html');
-
 });
 
-// Survey Form
+// Survey Form - handling both display and processing
 $f3->route('GET|POST /survey', function($f3) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Validate the data (check if username is filled and statements are an array)
+        $isValid = !empty($_POST['username']) && isset($_POST['statements']) && is_array($_POST['statements']);
 
-    $view = new Template();
-    echo $view->render('views/survey.html');
+        if (!$isValid) {
+            // Data is invalid
+            echo "Please fill in your name and select at least one statement.";
+        } else {
+            // Data is valid, store submitted data in the session
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['statements'] = $_POST['statements'];
+
+            // Redirect to the summary page
+            $f3->reroute('/summary');
+        }
+    } else {
+        // Display the survey form on GET request
+        $view = new Template();
+        echo $view->render('views/survey.html');
+    }
 });
 
-// Summary Page
-$f3->route('GET /summary', function() {
+// Summary Page - display the data from session
+$f3->route('GET /summary', function($f3) {
+    // Check if session data is available and set it to F3 hive
+    if (isset($_SESSION['username']) && isset($_SESSION['statements'])) {
+        $f3->set('username', $_SESSION['username']);
+        $f3->set('statements', $_SESSION['statements']);
+    } else {
+        // Default values if session data is not set
+        $f3->set('username', 'Unknown');
+        $f3->set('statements', []);
+    }
 
-    // Render a view page
     $view = new Template();
     echo $view->render('views/summary.html');
 });
-
 
 // Run Fat-Free
 $f3->run();
