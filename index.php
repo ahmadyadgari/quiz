@@ -17,8 +17,6 @@ $f3 = Base::instance();
 // https://ayadgari.greenriverdev.com/328/Week5/quiz/
 
 $f3->route('GET /', function() {
-    // echo "<p>Hello world!</p>";
-
     // Render a view page
     $view = new Template();
     echo $view->render('views/home-page.html');
@@ -28,31 +26,6 @@ $f3->route('GET /', function() {
 // Survey Form
 $f3->route('GET|POST /survey', function($f3) {
 
-    //Check if the form has been posted
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        //Get the data
-        $petData = [
-            'petType' => $f3->get('POST.petType'),
-            'breedType' => $f3->get('POST.breedType'),
-            'petAge' => $f3->get('POST.petAge'),
-            'petColor' => $f3->get('POST.petColor'),
-            'petGender' => $f3->get('POST.petGender')
-        ];
-
-        //Validate the data
-        if (empty($petData)) {
-
-            //Data is invalid
-            echo "Please supply a pet type";
-        } else {
-            //Data is valid
-            $f3->set('SESSION.petData', $petData);
-
-            //Redirect to the summary route
-            $f3->reroute("summary");
-        }
-    }
     $view = new Template();
     echo $view->render('views/survey.html');
 });
