@@ -1,0 +1,44 @@
+<!--- Pets Order Page
+   328/Week3/pets2/views/survey.html
+   Author: Ahmad Reshad Yadgari 04/20/2024--->
+
+<include href="views/header.html"></include>
+
+<body>
+<div class="container mt-5">
+    <h1>Order a Pet</h1>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="petType">What kind of pet would you like to order?</label>
+            <input type="text" class="form-control" id="petType" name="petType">
+        </div>
+        <div class="form-group">
+            <label for="breedType">Breed Type:</label>
+            <input type="text" class="form-control" id="breedType" name="breedType">
+        </div>
+        <div class="form-group">
+            <label for="petAge">Pet Age:</label>
+            <input type="number" class="form-control" id="petAge" name="petAge">
+        </div>
+        <div class="form-group">
+            <label for="petColor">Select a color:</label>
+            <select class="form-control" id="petColor" name="petColor">
+                <option>Black</option>
+                <option>White</option>
+                <option>Grey</option>
+                <option>Brown</option>
+                <option>Golden</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="petGender">Pet Gender:</label>
+            <select class="form-control" id="petGender" name="petGender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

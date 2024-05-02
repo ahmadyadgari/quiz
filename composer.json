@@ -1,0 +1,13 @@
+{
+  "name": "ayadgari/328/Week5/quiz",
+  "authors": [
+    {
+      "name": "Ahmad Reshad Yadgarir",
+      "email": "yadgari.ahmadreshad@student.greenriver.edu"
+    }
+  ],
+  "require":
+  {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
