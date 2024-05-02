@@ -11,11 +11,10 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1>Thank you for taking the survey, </h1>
-    <p>Name: {{ @username }}</p>
+    <h1>Thank you for taking the survey, {{ @username }}!</h1>
     <h2>Your Answers:</h2>
     <ul>
-        <check if="{{ @statements | count }}">
+        <check if="{{ count(@statements) > 0 && @statements[0] != 'None selected' }}">
             <true>
                 <repeat group="{{ @statements }}" value="{{ @statement }}">
                     <li>{{ @statement }}</li>

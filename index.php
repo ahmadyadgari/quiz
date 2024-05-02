@@ -22,42 +22,36 @@ $f3->route('GET /', function() {
     echo $view->render('views/home-page.html');
 });
 
-// Survey Form - handling both display and processing
+// Survey Form
 $f3->route('GET|POST /survey', function($f3) {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Validate the data (check if username is filled and statements are an array)
-        $isValid = !empty($_POST['username']) && isset($_POST['statements']) && is_array($_POST['statements']);
+        // Extract data from POST
+        $username = $_POST['username'];
+        $statements = isset($_POST['statements']) ?
+            implode(", ", $_POST['statements']) : "None selected";
 
-        if (!$isValid) {
-            // Data is invalid
-            echo "Please fill in your name and select at least one statement.";
-        } else {
-            // Data is valid, store submitted data in the session
-            $_SESSION['username'] = $_POST['username'];
-            $_SESSION['statements'] = $_POST['statements'];
+        // Store data
+        $f3->set('SESSION.username', $username);
+        $f3->set('SESSION.statements', $statements);
 
-            // Redirect to the summary page
-            $f3->reroute('/summary');
-        }
+        // Redirect to the summary page
+        $f3->reroute('/summary');
     } else {
-        // Display the survey form on GET request
+        // Display the survey form
         $view = new Template();
         echo $view->render('views/survey.html');
     }
 });
 
-// Summary Page - display the data from session
+// Summary Page
 $f3->route('GET /summary', function($f3) {
-    // Check if session data is available and set it to F3 hive
-    if (isset($_SESSION['username']) && isset($_SESSION['statements'])) {
-        $f3->set('username', $_SESSION['username']);
-        $f3->set('statements', $_SESSION['statements']);
-    } else {
-        // Default values if session data is not set
-        $f3->set('username', 'Unknown');
-        $f3->set('statements', []);
+    // Check if
+    if (!$f3->exists('SESSION.username') || !$f3->exists('SESSION.statements')) {
+        // Redirect to the home page if no session data found
+        $f3->reroute('/');
     }
 
+    // Render the summary
     $view = new Template();
     echo $view->render('views/summary.html');
 });
