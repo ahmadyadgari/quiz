@@ -1,42 +1,30 @@
-<!--- Pets Order Page
-   328/Week3/pets2/views/survey.html
-   Author: Ahmad Reshad Yadgari 04/20/2024--->
-
-<include href="views/header.html"></include>
-
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Midterm Survey</title>
+</head>
 <body>
 <div class="container mt-5">
-    <h1>Order a Pet</h1>
+    <h1>Midterm Survey</h1>
     <form action="#" method="post">
         <div class="form-group">
-            <label for="petType">What kind of pet would you like to order?</label>
-            <input type="text" class="form-control" id="petType" name="petType">
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" placeholder="your name" required><br>
         </div>
-        <div class="form-group">
-            <label for="breedType">Breed Type:</label>
-            <input type="text" class="form-control" id="breedType" name="breedType">
-        </div>
-        <div class="form-group">
-            <label for="petAge">Pet Age:</label>
-            <input type="number" class="form-control" id="petAge" name="petAge">
-        </div>
-        <div class="form-group">
-            <label for="petColor">Select a color:</label>
-            <select class="form-control" id="petColor" name="petColor">
-                <option>Black</option>
-                <option>White</option>
-                <option>Grey</option>
-                <option>Brown</option>
-                <option>Golden</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="petGender">Pet Gender:</label>
-            <select class="form-control" id="petGender" name="petGender">
-                <option>Male</option>
-                <option>Female</option>
-            </select>
-        </div>
+        <h2>Check all that Apply:</h2><br>
+        <!-- Updated Checkboxes with new labels -->
+        <input type="checkbox" id="easy-midterm" name="statements[]" value="This midterm is easy">
+        <label for="easy-midterm">This midterm is easy</label><br>
+        <input type="checkbox" id="like-midterm" name="statements[]" value="I like midterm">
+        <label for="like-midterm">I like midterm</label><br>
+        <input type="checkbox" id="today-monday" name="statements[]" value="Today is Monday">
+        <label for="today-monday">Today is Monday</label><br><br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

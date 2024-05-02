@@ -25,8 +25,8 @@ $f3->route('GET /', function() {
 
 });
 
-// Order Form
-$f3->route('GET|POST /order', function($f3) {
+// Survey Form
+$f3->route('GET|POST /survey', function($f3) {
 
     //Check if the form has been posted
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
